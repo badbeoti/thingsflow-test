@@ -1,10 +1,11 @@
 import React, { createContext, ReactNode } from 'react';
 
-type Issue = {
+export type Issue = {
   id: number;
   title: string;
   body: string;
   updated_at: string;
+  comments: number;
   user: {
     login: string;
     avatar_url: string;
