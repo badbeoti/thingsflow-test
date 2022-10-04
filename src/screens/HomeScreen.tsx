@@ -5,9 +5,7 @@ import useHome from '../hooks/useHome';
 import IssueList from '../components/IssueList';
 
 const HomeScreen = () => {
-  const { issues, isLoading } = useHome();
-
-  console.log(isLoading);
+  const { isLoading } = useHome();
 
   return (
     <HomeSafeAreaView>
@@ -19,9 +17,7 @@ const HomeScreen = () => {
       ) : (
         <></>
       )}
-      <ScrollView showsVerticalScrollIndicator={false}>
-        <IssueList />
-      </ScrollView>
+      <IssueList />
     </HomeSafeAreaView>
   );
 };

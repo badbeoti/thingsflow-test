@@ -8,7 +8,7 @@ import useHome from '../hooks/useHome';
 import { AD_IMAGE_URL } from '../assets/link';
 
 const IssueList = () => {
-  const { issues, openAdUrl } = useHome();
+  const { issues, openAdUrl, handleSetCurrentPage } = useHome();
 
   const renderItem = ({ item }: { item: Issue }) => {
     if (item.title === 'ad') {
@@ -50,6 +50,8 @@ const IssueList = () => {
         ItemSeparatorComponent={() => <Separator />}
         data={issues}
         renderItem={renderItem}
+        onEndReachedThreshold={0.2}
+        onEndReached={handleSetCurrentPage}
       />
     </IssueListContainer>
   );
