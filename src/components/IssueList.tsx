@@ -1,14 +1,17 @@
-import React, { useState } from 'react';
-import { FlatList, Linking, Pressable, Text, View } from 'react-native';
+import React from 'react';
+import { FlatList, View } from 'react-native';
 import dayjs from 'dayjs';
 import styled from '@emotion/native';
 
-import { Issue } from '../contexts/Issues';
+import { Issue, IssuesContext } from '../contexts/Issues';
 import useHome from '../hooks/useHome';
 import { AD_IMAGE_URL } from '../assets/link';
 
 const IssueList = () => {
-  const { issues, openAdUrl, handleSetCurrentPage, goToDetail } = useHome();
+  const { issues } = React.useContext(IssuesContext);
+  const { openAdUrl, handleSetCurrentPage, goToDetail } = useHome();
+
+  console.log(issues);
 
   const renderItem = ({ item, index }: { item: Issue; index: number }) => {
     if (item.title === 'ad') {

@@ -3,9 +3,10 @@ import styled from '@emotion/native';
 import { StatusBar, Text } from 'react-native';
 import useHome from '../hooks/useHome';
 import IssueList from '../components/IssueList';
+import { IssuesContext } from '../contexts/Issues';
 
 const HomeScreen = () => {
-  const { isLoading } = useHome();
+  const { isLoading } = React.useContext(IssuesContext);
 
   return (
     <HomeSafeAreaView>

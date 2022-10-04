@@ -40,12 +40,6 @@ const useHome = () => {
 
     const res = await getIssuesList();
     const newIssues = res.data.map((e: any, i: number) => {
-      if (i === 4) {
-        return {
-          title: 'ad',
-        };
-      }
-
       return {
         id: e.number,
         title: e.title,
@@ -58,6 +52,7 @@ const useHome = () => {
         },
       };
     });
+    newIssues.splice(4, 0, { title: 'ad' });
     setIssues(newIssues);
 
     setIsLoading(false);
@@ -91,7 +86,7 @@ const useHome = () => {
     Linking.openURL(AD_URL);
   };
 
-  return { issues, openAdUrl, isLoading, handleSetCurrentPage, goToDetail };
+  return { openAdUrl, handleSetCurrentPage, goToDetail };
 };
 
 export default useHome;
