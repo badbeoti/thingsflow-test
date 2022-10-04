@@ -25,7 +25,7 @@ export const IssuesContext: React.Context<{
 export const IssuesProvider: React.FC<{ children: ReactNode }> = ({
   children,
 }) => {
-  const [issueDetail, setIssueDetail] = React.useState<Issue>({});
+  const [issueDetail, setIssueDetail] = React.useState<Issue | null>(null);
   const [issues, setIssues] = React.useState<Issue[]>([]);
   const handleSetIssueDetail = (issue: Issue) => setIssueDetail(issue);
   const handleSetIssues = (issues: Issue[]) => setIssues(issues);

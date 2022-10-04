@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react';
 import { IssuesContext } from '../contexts/Issues';
 import { getIssuesList } from '../api/issues';
+import { Linking } from 'react-native';
+import { AD_URL } from '../assets/link';
 
 const useHome = () => {
   const { issues, setIssues } = React.useContext(IssuesContext);
@@ -33,7 +35,11 @@ const useHome = () => {
     setIssues(newIssues);
   };
 
-  return { issues };
+  const openAdUrl = () => {
+    Linking.openURL(AD_URL);
+  };
+
+  return { issues, openAdUrl };
 };
 
 export default useHome;

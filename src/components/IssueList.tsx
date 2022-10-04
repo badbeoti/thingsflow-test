@@ -1,25 +1,28 @@
 import React, { useState } from 'react';
-import { FlatList, Pressable, Text, View } from 'react-native';
+import { FlatList, Linking, Pressable, Text, View } from 'react-native';
+import dayjs from 'dayjs';
 import styled from '@emotion/native';
+
 import { Issue } from '../contexts/Issues';
 import useHome from '../hooks/useHome';
-import dayjs from 'dayjs';
+import { AD_IMAGE_URL } from '../assets/link';
 
 const IssueList = () => {
-  const { issues } = useHome();
+  const { issues, openAdUrl } = useHome();
 
   const renderItem = ({ item }: { item: Issue }) => {
     if (item.title === 'ad') {
       return (
-        <IssueItemContainer>
+        <IssueItemContainer onPress={openAdUrl}>
           <IssueImageContainer
             source={{
-              uri: 'https://hellobot-test.s3.ap-northeast-2.amazonaws.com/image/01fdd797-0477-4717-8d70-8551150463f7',
+              uri: AD_IMAGE_URL,
             }}
           />
         </IssueItemContainer>
       );
     }
+
     return (
       <IssueItemContainer>
         <IssueTitleContainer>
@@ -44,9 +47,7 @@ const IssueList = () => {
     <IssueListContainer>
       <FlatList
         showsVerticalScrollIndicator={false}
-        ItemSeparatorComponent={() => (
-          <View style={{ height: 1, backgroundColor: '#000000' }} />
-        )}
+        ItemSeparatorComponent={() => <Separator />}
         data={issues}
         renderItem={renderItem}
       />
@@ -89,3 +90,8 @@ const IssueTitleText = styled.Text({
 });
 
 const IssueItemComments = styled.View({});
+
+const Separator = styled.View({
+  height: 1,
+  backgroundColor: '#000000',
+});
