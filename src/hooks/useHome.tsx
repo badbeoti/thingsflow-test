@@ -3,6 +3,7 @@ import { IssuesContext } from '../contexts/Issues';
 import { getIssuesList } from '../api/issues';
 import { Linking } from 'react-native';
 import { AD_URL } from '../assets/link';
+import { useNavigation } from '@react-navigation/native';
 
 export const sleep = (ms: number) =>
   new Promise((resolve: any) => setTimeout(resolve, ms));
@@ -10,8 +11,16 @@ export const sleep = (ms: number) =>
 const DEFAULT_PAGE = 1;
 
 const useHome = () => {
-  const { issues, setIssues, isLoading, setIsLoading } =
+  const { issues, setIssues, isLoading, setIsLoading, setIssueDetail } =
     React.useContext(IssuesContext);
+
+  const navigation = useNavigation();
+
+  const goToDetail = (index: number) => {
+    setIssueDetail(issues[index]);
+
+    navigation.navigate('Detail');
+  };
 
   const [currentPage, setCurrentPage] = React.useState<number>(DEFAULT_PAGE);
   const handleSetCurrentPage = () => setCurrentPage(prev => prev + 1);
@@ -82,7 +91,7 @@ const useHome = () => {
     Linking.openURL(AD_URL);
   };
 
-  return { issues, openAdUrl, isLoading, handleSetCurrentPage };
+  return { issues, openAdUrl, isLoading, handleSetCurrentPage, goToDetail };
 };
 
 export default useHome;

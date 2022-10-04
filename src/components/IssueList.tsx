@@ -8,9 +8,9 @@ import useHome from '../hooks/useHome';
 import { AD_IMAGE_URL } from '../assets/link';
 
 const IssueList = () => {
-  const { issues, openAdUrl, handleSetCurrentPage } = useHome();
+  const { issues, openAdUrl, handleSetCurrentPage, goToDetail } = useHome();
 
-  const renderItem = ({ item }: { item: Issue }) => {
+  const renderItem = ({ item, index }: { item: Issue; index: number }) => {
     if (item.title === 'ad') {
       return (
         <IssueItemContainer onPress={openAdUrl}>
@@ -24,7 +24,7 @@ const IssueList = () => {
     }
 
     return (
-      <IssueItemContainer>
+      <IssueItemContainer onPress={() => goToDetail(index)}>
         <IssueTitleContainer>
           <View style={{ width: '70%' }}>
             <IssueTitleText>
