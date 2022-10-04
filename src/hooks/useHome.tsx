@@ -5,13 +5,10 @@ import { Linking } from 'react-native';
 import { AD_URL } from '../assets/link';
 import { useNavigation } from '@react-navigation/native';
 
-export const sleep = (ms: number) =>
-  new Promise((resolve: any) => setTimeout(resolve, ms));
-
 const DEFAULT_PAGE = 1;
 
 const useHome = () => {
-  const { issues, setIssues, isLoading, setIsLoading, setIssueDetail } =
+  const { issues, setIssues, setIsLoading, setIssueDetail } =
     React.useContext(IssuesContext);
 
   const navigation = useNavigation();
@@ -30,13 +27,13 @@ const useHome = () => {
   }, []);
 
   useEffect(() => {
-    fetchNextIssuesList();
+    if (currentPage > DEFAULT_PAGE) {
+      fetchNextIssuesList();
+    }
   }, [currentPage]);
 
   const fetchInitIssuesList = async () => {
     setIsLoading(true);
-
-    await sleep(1000);
 
     const res = await getIssuesList();
     const newIssues = res.data.map((e: any, i: number) => {
@@ -60,8 +57,6 @@ const useHome = () => {
 
   const fetchNextIssuesList = useCallback(async () => {
     setIsLoading(true);
-
-    await sleep(1000);
 
     const res = await getIssuesList(currentPage + 1);
     const newIssues = res.data.map((e: any) => {
