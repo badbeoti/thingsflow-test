@@ -9,7 +9,7 @@ export const authInstance = axios.create({
 
 authInstance.interceptors.request.use(
   config => {
-    const token = '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';
+    const token = '';
 
     config.headers = {
       ...config.headers,
