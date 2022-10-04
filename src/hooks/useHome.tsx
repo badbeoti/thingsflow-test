@@ -1,7 +1,8 @@
 import React, { useCallback, useEffect } from 'react';
+import { Linking } from 'react-native';
+
 import { IssuesContext } from '../contexts/Issues';
 import { getIssuesList } from '../api/issues';
-import { Linking } from 'react-native';
 import { AD_URL } from '../assets/link';
 import { useNavigation } from '@react-navigation/native';
 

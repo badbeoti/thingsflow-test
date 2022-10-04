@@ -1,14 +1,13 @@
 import React from 'react';
 import styled from '@emotion/native';
-import { ScrollView, StatusBar, Text, View } from 'react-native';
+import { ScrollView, StatusBar, View } from 'react-native';
 import Markdown from 'react-native-markdown-display';
 import dayjs from 'dayjs';
+
 import { IssuesContext } from '../contexts/Issues';
 
 const DetailScreen = () => {
   const { issueDetail } = React.useContext(IssuesContext);
-
-  console.log(issueDetail);
 
   return (
     <DetailSafeAreaView>

@@ -11,8 +11,6 @@ const IssueList = () => {
   const { issues } = React.useContext(IssuesContext);
   const { openAdUrl, handleSetCurrentPage, goToDetail } = useHome();
 
-  console.log(issues);
-
   const renderItem = ({ item, index }: { item: Issue; index: number }) => {
     if (item.title === 'ad') {
       return (
@@ -64,7 +62,6 @@ export default IssueList;
 
 const IssueListContainer = styled.Pressable({
   width: '100%',
-  // backgroundColor: "white",
 });
 
 const IssueItemContainer = styled.Pressable({
@@ -74,15 +71,12 @@ const IssueItemContainer = styled.Pressable({
 const IssueImageContainer = styled.Image({
   paddingHorizontal: 18,
   paddingVertical: 32,
-  // width: '100%',
-  // height: '100%',
 });
 
 const IssueTitleContainer = styled.View({
   width: '100%',
   paddingHorizontal: 18,
   paddingVertical: 16,
-  // backgroundColor: '#272727',
   flexDirection: 'row',
   justifyContent: 'space-between',
   alignItems: 'center',
@@ -91,7 +85,6 @@ const IssueTitleContainer = styled.View({
 const IssueTitleText = styled.Text({
   fontSize: 12,
   fontWeight: 'bold',
-  // color: 'white',
 });
 
 const IssueItemComments = styled.View({});
