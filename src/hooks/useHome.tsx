@@ -4,14 +4,22 @@ import { getIssuesList } from '../api/issues';
 import { Linking } from 'react-native';
 import { AD_URL } from '../assets/link';
 
+export const sleep = (ms: number) =>
+  new Promise((resolve: any) => setTimeout(resolve, ms));
+
 const useHome = () => {
-  const { issues, setIssues } = React.useContext(IssuesContext);
+  const { issues, setIssues, isLoading, setIsLoading } =
+    React.useContext(IssuesContext);
 
   useEffect(() => {
     fetchInitIssuesList();
   }, []);
 
   const fetchInitIssuesList = async () => {
+    setIsLoading(true);
+
+    await sleep(3000);
+
     const res = await getIssuesList();
     const newIssues = res.data.map((e: any, i: number) => {
       if (i === 4) {
@@ -33,13 +41,15 @@ const useHome = () => {
       };
     });
     setIssues(newIssues);
+
+    setIsLoading(false);
   };
 
   const openAdUrl = () => {
     Linking.openURL(AD_URL);
   };
 
-  return { issues, openAdUrl };
+  return { issues, openAdUrl, isLoading };
 };
 
 export default useHome;
