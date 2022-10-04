@@ -1,5 +1,5 @@
 import React from 'react';
-import { FlatList, View } from 'react-native';
+import { FlatList, Text, View } from 'react-native';
 import dayjs from 'dayjs';
 import styled from '@emotion/native';
 
@@ -9,7 +9,7 @@ import { AD_IMAGE_URL } from '../assets/link';
 
 const IssueList = () => {
   const { issues } = React.useContext(IssuesContext);
-  const { openAdUrl, handleSetCurrentPage, goToDetail } = useHome();
+  const { openAdUrl, handleSetCurrentPage, goToDetail, errorMsg } = useHome();
 
   const renderItem = ({ item, index }: { item: Issue; index: number }) => {
     if (item.title === 'ad') {
@@ -53,6 +53,7 @@ const IssueList = () => {
         renderItem={renderItem}
         onEndReachedThreshold={0.2}
         onEndReached={handleSetCurrentPage}
+        ListEmptyComponent={() => <Text>{errorMsg}</Text>}
       />
     </IssueListContainer>
   );
